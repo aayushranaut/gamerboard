@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Response;
 
 class ApiController extends BaseController
 {
+    const API_KEY = "e758645db188e30fd565e67fefb21388";
+
     /**
      * @var int
      */

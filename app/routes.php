@@ -11,6 +11,6 @@
 |
 */
 
-Route::group(array('suffix' => 'v1'), function(){
-	Route::resource('api', 'ApiController');
+Route::group(array('prefix' => 'api/v1'), function(){
+	Route::resource('psn', 'PsnUserController');
 });
