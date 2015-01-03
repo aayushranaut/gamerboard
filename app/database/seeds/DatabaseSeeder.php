@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 
 		$this->call('PsnUserSeeder');
+		$this->call('UserSeeder');
 	}
 
 	/**
