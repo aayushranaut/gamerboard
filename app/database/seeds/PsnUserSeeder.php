@@ -15,13 +15,15 @@ class PsnUserSeeder extends Seeder
             $platinum = $faker->numberBetween(1, 1000);
 
             PsnUser::create([
-                'username' => $faker->userName(),
-                'level'    => $faker->numberBetween(1, 10),
-                'trophies' => $bronze + $silver + $gold + $platinum,
-                'bronze'   => $bronze,
-                'silver'   => $silver,
-                'gold'     => $gold,
-                'platinum' => $platinum,
+                'username'   => $faker->userName(),
+                'level'      => $faker->numberBetween(1, 10),
+                'avatar_url' => 'http://lorempixel.com/75/75',
+                'progress'   => $faker->numberBetween(0, 100),
+                'trophies'   => $bronze + $silver + $gold + $platinum,
+                'bronze'     => $bronze,
+                'silver'     => $silver,
+                'gold'       => $gold,
+                'platinum'   => $platinum,
             ]);
         }
     }

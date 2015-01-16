@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('PsnUserSeeder');
 		$this->call('UserSeeder');
+		$this->call('PsnUserUserSeeder');
 	}
 
 	/**

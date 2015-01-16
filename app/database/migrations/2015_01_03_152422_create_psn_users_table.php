@@ -16,7 +16,9 @@ class CreatePsnUsersTable extends Migration
         Schema::create('psn_users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username');
+            $table->string('avatar_url');
             $table->integer('level');
+            $table->integer('progress');
             $table->integer('trophies');
             $table->integer('bronze');
             $table->integer('silver');

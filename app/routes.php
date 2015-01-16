@@ -14,3 +14,5 @@
 Route::group(array('prefix' => 'api/v1'), function(){
 	Route::resource('psn', 'PsnUserController');
 });
+
+Route::get('cron/{playerId}', 'CronController@fetchLatestPlayers');

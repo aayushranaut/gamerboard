@@ -25,7 +25,6 @@ class PsnUserController extends \ApiController
         return $this->respond([
             'data' => $this->userTransformer->transformCollection($psnUsers->all())
         ]);
-
     }
 
     /**
@@ -47,14 +46,14 @@ class PsnUserController extends \ApiController
      */
     public function store()
     {
-        if (!Input::get('username') or
-            !Input::get('trophies') or
-            !Input::get('bronze') or
-            !Input::get('silver') or
-            !Input::get('gold') or
-            !Input::get('platinum') or
-            !Input::get('level') or
-            !Input::get('api-key') or
+        if (!Input::has('username') ||
+            !Input::has('trophies') ||
+            !Input::has('bronze') ||
+            !Input::has('silver') ||
+            !Input::has('gold') ||
+            !Input::has('platinum') ||
+            !Input::has('level') ||
+            !Input::has('api-key') ||
             Input::get('api-key') != self::API_KEY
         ) {
 
@@ -65,15 +64,32 @@ class PsnUserController extends \ApiController
         $psnUser = PsnUser::whereUsername(Input::get('username'))->first();
 
         if ($psnUser) {
-            $psnUser->trophies = Input::get('trophies');
-            $psnUser->bronze   = Input::get('bronze');
-            $psnUser->silver   = Input::get('silver');
-            $psnUser->gold     = Input::get('gold');
-            $psnUser->platinum = Input::get('platinum');
-            $psnUser->level    = Input::get('level');
-            $psnUser->save();
+            $psnUser->update([
+                'avatar_url' => Input::get('avatar_url'),
+                'trophies'   => Input::get('trophies'),
+                'bronze'     => Input::get('bronze'),
+                'silver'     => Input::get('silver'),
+                'gold'       => Input::get('gold'),
+                'platinum'   => Input::get('platinum'),
+                'level'      => Input::get('level'),
+                'progress'   => Input::get('progress'),
+            ]);
+            return $this->respondUpdated('Player successfully created');
         }
-        PsnUser::create();
+        else {
+            PsnUser::create([
+                'username'   => Input::get('username'),
+                'avatar_url' => Input::get('avatar_url'),
+                'trophies'   => Input::get('trophies'),
+                'bronze'     => Input::get('bronze'),
+                'silver'     => Input::get('silver'),
+                'gold'       => Input::get('gold'),
+                'platinum'   => Input::get('platinum'),
+                'level'      => Input::get('level'),
+                'progress'   => Input::get('progress')
+            ]);
+            return $this->respondCreated('Player successfully created');
+        }
     }
 
     /**
