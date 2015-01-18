@@ -45,7 +45,7 @@ class CronController extends ApiController
         ]);
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        echo curl_exec($ch);
+        curl_exec($ch);
 
         return $this->respond(['data' => $userInfo]);
     }
